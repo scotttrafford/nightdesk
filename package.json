@@ -1,0 +1,30 @@
+{
+  "name": "nightdesk",
+  "version": "1.0.0",
+  "description": "AI call sorting for small businesses: knows who callers want, how urgent it is, and who's on call.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "dotenv": "^16.4.0",
+    "express": "^4.21.0",
+    "pg": "^8.18.0",
+    "twilio": "^5.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  },
+  "overrides": {
+    "qs": "^6.16.0"
+  }
+}

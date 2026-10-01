@@ -1,0 +1,18 @@
+# Daily rotation for the NightDesk application log.
+# Install: sudo cp deploy/nightdesk.logrotate /etc/logrotate.d/nightdesk
+#          (edit the path and the `su` user first)
+# Test:    sudo logrotate --debug /etc/logrotate.d/nightdesk
+#
+# copytruncate is required: the app appends to the file and never reopens it.
+# `su` is required if the logs directory is not owned by root.
+
+/opt/nightdesk/logs/app.log {
+    su nightdesk nightdesk
+    daily
+    rotate 14
+    compress
+    delaycompress
+    missingok
+    notifempty
+    copytruncate
+}

@@ -1,0 +1,743 @@
+/* ============================================================
+   NightDesk admin panel stylesheet
+
+   Brand colours are CSS variables. --brand-primary and --brand-accent
+   are overridden per installation by branding_head() (branding.php);
+   the other brand shades are derived from them. Status colours
+   (red / green / orange) are fixed so they keep their meaning.
+   ============================================================ */
+
+:root {
+    --brand-primary: #152035;
+    --brand-accent:  #2e86c1;
+    --brand-primary-light: color-mix(in srgb, var(--brand-primary) 88%, white);
+    --brand-accent-dark:   color-mix(in srgb, var(--brand-accent) 70%, black);
+    --brand-accent-soft:   color-mix(in srgb, var(--brand-accent) 10%, white);
+    --brand-accent-border: color-mix(in srgb, var(--brand-accent) 35%, white);
+}
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    background: #f0f2f7;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+/* ── Layout ───────────────────────────────────────────────── */
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    padding: 30px;
+}
+
+/* ── Sidebar ──────────────────────────────────────────────── */
+.sidebar {
+    width: 250px;
+    background: var(--brand-primary);
+    color: white;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.sidebar-logo {
+    background: white;
+    width: 42px;
+    height: 42px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px;
+    flex-shrink: 0;
+}
+
+.sidebar-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.sidebar-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    border: none !important;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+    color: white;
+}
+
+.sidebar-product {
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.55);
+    margin-top: 3px;
+}
+
+.sidebar-user {
+    padding: 12px 20px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 8px;
+}
+
+.sidebar-user .user-label {
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+.sidebar-user .user-name {
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.sidebar-user .user-role {
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.sidebar-user .btn-logout {
+    display: inline-block;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    transition: background 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.sidebar-user .btn-logout:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+.nav-divider {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin: 8px 0;
+}
+
+.nav-item {
+    padding: 0;
+    border-left: 3px solid transparent;
+    transition: all 0.15s ease;
+}
+
+.nav-item:hover {
+    background: rgba(255,255,255,0.06);
+}
+
+.nav-item.active {
+    background: rgba(255,255,255,0.1);
+    border-left-color: var(--brand-accent);
+}
+
+.nav-item a {
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 20px;
+    font-size: 14px;
+    transition: color 0.15s;
+}
+
+.nav-item:hover a {
+    color: rgba(255,255,255,0.9);
+}
+
+.nav-item.active a {
+    color: white;
+    font-weight: 500;
+}
+
+.nav-item.nav-back a {
+    color: rgba(255,255,255,0.4);
+    font-size: 14px;
+}
+
+/* ── Cards & Headers ──────────────────────────────────────── */
+.page-header {
+    background: white;
+    padding: 20px 24px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.page-header h1 {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--brand-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.page-header p {
+    color: #7f8c8d;
+    margin-top: 6px;
+    font-size: 14px;
+}
+
+.content-card {
+    background: white;
+    padding: 22px 24px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.content-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--brand-primary);
+    margin-bottom: 18px;
+}
+
+.card-status {
+    background: white;
+    padding: 20px 24px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
+
+/* ── Tables ───────────────────────────────────────────────── */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+}
+
+th, td {
+    padding: 11px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ecf0f1;
+    font-size: 14px;
+}
+
+th {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: var(--brand-primary);
+    font-size: 14px;
+    letter-spacing: 0.02em;
+}
+
+tr:hover td {
+    background: #f8fafc;
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.btn {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.15s ease;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 1.5;
+    text-decoration: none;
+}
+
+/* Edit / Primary action */
+.btn-primary {
+    background: var(--brand-primary);
+    color: white;
+}
+.btn-primary:hover {
+    background: var(--brand-primary-light);
+}
+
+/* Save / Enable / Add */
+.btn-success {
+    background: #1a7a4a;
+    color: white;
+}
+.btn-success:hover {
+    background: #15663d;
+}
+
+/* Delete */
+.btn-danger {
+    background: #b03a2e;
+    color: white;
+}
+.btn-danger:hover {
+    background: #962d22;
+}
+
+/* Disable / Cancel / Secondary */
+.btn-secondary {
+    background: #5d6d7e;
+    color: white;
+}
+.btn-secondary:hover {
+    background: #4e5d6c;
+}
+
+/* ── Form Inputs ──────────────────────────────────────────── */
+label {
+    font-size: 14px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #dde2e8;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.15s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--brand-accent);
+    box-shadow: 0 0 0 3px rgba(46,134,193,0.1);
+}
+
+label.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #2c3e50;
+}
+
+small.form-hint {
+    color: #7f8c8d;
+    font-size: 14px;
+    display: block;
+    margin-top: 4px;
+}
+
+/* ── Status Badges ────────────────────────────────────────── */
+.badge {
+    padding: 3px 9px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+/* Active */
+.badge-success {
+    background: #eafaf1;
+    color: #1a7a4a;
+    border: 1px solid #a9dfbf;
+}
+
+/* Inactive / Disabled */
+.badge-inactive {
+    background: #eaecee;
+    color: #5d6d7e;
+    border: 1px solid #d5d8dc;
+}
+
+/* Upcoming (on-call) */
+.badge-upcoming {
+    background: var(--brand-accent-soft);
+    color: var(--brand-accent-dark);
+    border: 1px solid var(--brand-accent-border);
+}
+
+/* Past (on-call) */
+.badge-past {
+    background: #f5f5f5;
+    color: #666;
+    border: 1px solid #ddd;
+}
+
+/* ── Trigger Type Badges ──────────────────────────────────── */
+.badge-trigger {
+    padding: 3px 9px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    display: inline-block;
+    white-space: nowrap;
+    color: white;
+}
+
+.badge-emergency  { background: #b03a2e; }
+.badge-soft       { background: #ca6f1e; }
+.badge-routine    { background: var(--brand-accent); }
+.badge-operator   { background: #2c3e50; }
+
+/* ── Role Badges ──────────────────────────────────────────── */
+.badge-role {
+    padding: 3px 9px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    display: inline-block;
+    color: white;
+}
+
+.badge-role-admin  { background: #b03a2e; }
+.badge-role-editor { background: #ca6f1e; }
+.badge-role-viewer { background: var(--brand-accent); }
+
+/* ── Audit Action Badges ──────────────────────────────────── */
+.badge-action {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+.badge-action-login    { background: #eafaf1; color: #1a7a4a; border: 1px solid #a9dfbf; }
+.badge-action-logout   { background: var(--brand-accent-soft); color: var(--brand-accent-dark); border: 1px solid var(--brand-accent-border); }
+.badge-action-failed   { background: #fdecea; color: #b03a2e; border: 1px solid #f5b7b1; }
+.badge-action-created  { background: #eafaf1; color: #1a7a4a; border: 1px solid #a9dfbf; }
+.badge-action-deleted  { background: #fdecea; color: #b03a2e; border: 1px solid #f5b7b1; }
+.badge-action-updated  { background: #fef9e7; color: #b7770d; border: 1px solid #f9e3a0; }
+.badge-action-default  { background: #f0f2f7; color: #5d6d7e; border: 1px solid #d5d8dc; }
+
+/* ── Trigger Stat Cards ───────────────────────────────────── */
+.stat-cards {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    transition: opacity 0.2s, transform 0.15s;
+    display: block;
+}
+
+.stat-card:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.stat-card .stat-number {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.stat-card .stat-label {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-top: 4px;
+}
+
+.stat-card-emergency { background: #b03a2e; }
+.stat-card-soft      { background: #ca6f1e; }
+.stat-card-routine   { background: var(--brand-accent-dark); }
+.stat-card-operator  { background: #5d6d7e; }
+.stat-card-total     { background: #1a7a4a; }
+
+/* ── Alerts & Messages ────────────────────────────────────── */
+.alert {
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    border-left: 4px solid;
+}
+
+.alert-success {
+    background: #eafaf1;
+    color: #1a7a4a;
+    border-color: #1a7a4a;
+}
+
+.alert-error {
+    background: #fdecea;
+    color: #b03a2e;
+    border-color: #b03a2e;
+}
+
+.alert-warning {
+    background: #fef9e7;
+    color: #b7770d;
+    border-color: #ca6f1e;
+}
+
+/* ── Status Indicators (big) ──────────────────────────────── */
+.status-open {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a7a4a;
+}
+
+.status-closed {
+    font-size: 22px;
+    font-weight: 700;
+    color: #b03a2e;
+}
+
+.status-warning {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ca6f1e;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ── Pagination ───────────────────────────────────────────── */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination .page-info {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+/* ── Utility ──────────────────────────────────────────────── */
+.text-muted   { color: #7f8c8d; }
+.text-small   { font-size: 14px; }
+.text-mono    { font-family: monospace; }
+.mt-20        { margin-top: 20px; }
+.inline-form  { display: inline; }
+
+/* ============================================================
+   Call Logs — Page-specific styles
+   ============================================================ */
+
+/* Standalone page body (call-logs has its own layout) */
+body.call-logs-page {
+    max-width: 1600px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* Header bar */
+.page-top {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.page-top h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--brand-primary);
+}
+.page-top-actions { display: flex; gap: 10px; align-items: center; }
+
+/* Call logs table overrides (grid lines, dark header, rounded corners).
+   border-collapse must be 'separate': collapsed borders aren't clipped by
+   border-radius, which leaves square corners poking out of the header. */
+.call-logs-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.call-logs-table th,
+.call-logs-table td {
+    border: 0;
+    border-right: 1px solid #dde2e8;
+    border-bottom: 1px solid #dde2e8;
+    padding: 11px 12px;
+    text-align: left;
+    font-size: 14px;
+}
+.call-logs-table th:last-child,
+.call-logs-table td:last-child { border-right: 0; }
+.call-logs-table tr:last-child td { border-bottom: 0; }
+.call-logs-table th {
+    background: var(--brand-primary);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border-color: var(--brand-primary-light);
+}
+.call-logs-table tr:nth-child(even) td { background: #f9fafb; }
+.call-logs-table tr:hover td { background: #f0f4f8; }
+
+/* Transcript bubbles */
+.transcript { font-size: 14px; max-width: 400px; line-height: 1.5; }
+.user-msg {
+    background: var(--brand-accent-soft);
+    padding: 7px 10px;
+    margin: 3px 0;
+    border-radius: 4px;
+    border-left: 3px solid var(--brand-accent);
+}
+.assistant-msg {
+    background: #eafaf1;
+    padding: 7px 10px;
+    margin: 3px 0;
+    border-radius: 4px;
+    border-left: 3px solid #1a7a4a;
+}
+
+/* Phone chip */
+.phone {
+    font-family: monospace;
+    background: #f0f2f7;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+/* Urgency */
+.text-normal { color: #7f8c8d; font-size: 14px; }
+
+/* Standalone emergency badge used in call-logs urgency column */
+.badge-emergency-pill {
+    background: #b03a2e;
+    color: white;
+    padding: 4px 9px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 14px;
+    display: inline-block;
+}
+
+/* AI inference badges (clickable) */
+.badge-review   { background: var(--brand-accent-soft); color: var(--brand-accent-dark); cursor: pointer; }
+.badge-approved { background: #eafaf1; color: #1a7a4a; cursor: pointer; }
+.badge-rejected { background: #fdecea; color: #b03a2e; cursor: pointer; }
+/* Call matched an existing trigger phrase (nothing to review) */
+.badge-trigger-match { background: #eaecee; color: #4e5d6c; white-space: normal; cursor: help; }
+
+/* View Log button */
+.btn-log {
+    background: #5d6d7e;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    font-size: 12px;
+    color: white;
+    border-radius: 3px;
+    margin-top: 5px;
+    vertical-align: middle;
+}
+.btn-log:hover { background: #4e5d6c; }
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.55);
+}
+.modal-content {
+    background: white;
+    margin: 8% auto;
+    border-radius: 8px;
+    width: 650px;
+    max-width: 90%;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.modal-header {
+    padding: 18px 22px;
+    background: var(--brand-primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.modal-header h2 { font-size: 18px; font-weight: 500; margin: 0; }
+.close { color: white; font-size: 26px; cursor: pointer; line-height: 1; }
+.close:hover { opacity: 0.7; }
+.modal-body { padding: 22px; }
+
+.inference-detail {
+    margin-bottom: 14px;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    border-left: 4px solid var(--brand-accent);
+}
+.inference-detail strong { display: block; margin-bottom: 5px; color: var(--brand-primary); }
+.inference-detail .value { color: #555; font-style: italic; line-height: 1.5; font-size: 14px; }
+
+.help-box {
+    margin-top: 14px;
+    padding: 12px;
+    background: #fef9e7;
+    border-left: 4px solid #ca6f1e;
+    border-radius: 4px;
+}
+.help-box strong { display: block; margin-bottom: 4px; font-size: 14px; }
+.help-box p { margin: 0; font-size: 14px; color: #555; line-height: 1.4; }
+
+.action-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 18px;
+}
+.action-buttons button {
+    padding: 12px 8px;
+    font-size: 14px;
+    line-height: 1.3;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+    transition: opacity 0.15s;
+}
+.action-buttons button small {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    opacity: 0.85;
+}
+.action-buttons button:hover { opacity: 0.87; }
+.btn-act-emergency { background: #b03a2e; }
+.btn-act-soft      { background: #ca6f1e; }
+.btn-act-routine   { background: var(--brand-accent); }
+.btn-act-ignore    { background: #5d6d7e; }

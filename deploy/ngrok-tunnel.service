@@ -1,0 +1,25 @@
+# Optional: systemd unit that exposes NightDesk through ngrok (TUNNEL_MODE=ngrok).
+# Requires ngrok installed and authenticated as the User below:
+#   sudo -u nightdesk ngrok config add-authtoken <your-token>
+#
+# The public address comes from that authtoken (the account's free domain).
+# Use a separate ngrok account for every phone system you run, and never add
+# --pooling-enabled: it load-balances calls between every machine on the
+# account, mixing one system's calls into another's. To pin the address,
+# append --url=https://<your-domain> to ExecStart.
+# Install alongside deploy/nightdesk.service.
+[Unit]
+Description=ngrok tunnel for NightDesk (port 3000)
+After=network-online.target nightdesk.service
+Wants=network-online.target
+Requires=nightdesk.service
+
+[Service]
+Type=simple
+User=nightdesk
+ExecStart=/usr/local/bin/ngrok http 3000 --log=stdout
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

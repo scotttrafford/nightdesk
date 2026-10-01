@@ -1,0 +1,19 @@
+# systemd unit for the NightDesk call server.
+# Install: sudo cp deploy/nightdesk.service /etc/systemd/system/
+#          (edit User and WorkingDirectory first)
+#          sudo systemctl daemon-reload && sudo systemctl enable --now nightdesk
+[Unit]
+Description=NightDesk call server
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=nightdesk
+WorkingDirectory=/opt/nightdesk
+ExecStart=/usr/bin/node src/server.js
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

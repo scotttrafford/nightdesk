@@ -1,0 +1,31 @@
+# Example Apache vhost for TUNNEL_MODE=direct.
+# Proxies Twilio webhooks (/call/*) and /health to Node; everything else is
+# served from the admin panel.
+#
+# Required modules: sudo a2enmod ssl proxy proxy_http headers
+# TLS certificates shown are from Let's Encrypt (certbot --apache).
+
+<VirtualHost *:443>
+    ServerName nightdesk.example.com
+    DocumentRoot /opt/nightdesk/admin
+
+    <Directory /opt/nightdesk/admin>
+        Options -Indexes -FollowSymLinks
+        AllowOverride None
+        Require all granted
+    </Directory>
+
+    # Twilio signs the public https:// URL. Preserve the Host header and tell
+    # Node the original protocol, or signature validation will fail.
+    ProxyPreserveHost On
+    RequestHeader set X-Forwarded-Proto "https"
+    ProxyPass        /call/  http://localhost:3000/call/
+    ProxyPassReverse /call/  http://localhost:3000/call/
+    ProxyPass        /health http://localhost:3000/health
+    ProxyPassReverse /health http://localhost:3000/health
+
+    SSLEngine on
+    SSLCertificateFile    /etc/letsencrypt/live/nightdesk.example.com/fullchain.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/nightdesk.example.com/privkey.pem
+    Include /etc/letsencrypt/options-ssl-apache.conf
+</VirtualHost>

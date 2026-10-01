@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 64 64" role="img" aria-label="NightDesk">
+  <rect width="64" height="64" rx="14" fill="#152035"/>
+  <path d="M35 13a19 19 0 1 0 16 29A15 15 0 0 1 35 13z" fill="#f4d35e"/>
+  <path d="M45 18c2.5 1.8 4.2 4.6 4.6 7.8M47.5 13.5c4.2 2.9 7 7.6 7.6 12.9" fill="none" stroke="#2e86c1" stroke-width="2.6" stroke-linecap="round"/>
+</svg>
